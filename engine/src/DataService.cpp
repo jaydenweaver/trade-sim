@@ -47,21 +47,36 @@ Tick DataService::process_row(const std::string& line) const {
     std::string value;
     std::vector<std::string> values;
 
-    while (std::getline(ss, value, ','))
+    while (std::getline(ss, value, ',')){
+
+        // trim quotes if needed
+        if (value.size() >= 2 && value.front() == '"' && value.back() == '"')
+            value = value.substr(1, value.size() - 2);
+
         values.push_back(value);
+    }
 
     if (values.size() != 7) {
         std::cerr << "skipping malformed line" << std::endl;
         return tick;
     }
 
+    // trim % off change if needed
+    if (values[6].back() == '%') values[6] = values[6].substr(0, value.size() - 2);
+
     tick.date = values[0];
-    tick.close = std::stod(values[1]);
-    tick.open = std::stod(values[2]);
-    tick.high = std::stod(values[3]);
-    tick.low = std::stod(values[4]);
     tick.volume = values[5];
-    tick.change = std::stod(values[6]);
+
+    try {
+        tick.close = std::stod(values[1]);
+        tick.open  = std::stod(values[2]);
+        tick.high  = std::stod(values[3]);
+        tick.low   = std::stod(values[4]);
+        tick.change = std::stod(values[6]);
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "Invalid number in line: " << line << std::endl;
+        return Tick{};
+    }
 
     return tick;
 }
