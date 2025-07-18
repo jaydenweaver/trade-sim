@@ -11,4 +11,6 @@ class DataService {
         std::vector<Tick> get_ticks(const std::string& symbol, const std::string& start, const std::string& end);
 
     private:
+
+        std::string api_key;
 };
