@@ -22,7 +22,7 @@ std::vector<Tick> DataService::process_data() {
     std::getline(stream, line);
 
     while (std::getline(stream, line)) 
-        ticks.insert(ticks.end(), process_row(line));
+        ticks.push_back(process_row(line));
 
     return ticks;
 }
@@ -60,14 +60,14 @@ Tick DataService::process_row(const std::string& line) const {
     }
 
     // trim % off change if needed
-    if (values[6].back() == '%') values[6] = values[6].substr(0, value.size() - 2);
+    if (values[6].back() == '%') values[6] = values[6].substr(0, values[6].size() - 1);
 
     Tick tick;
 
     try {
         tick = Tick(values);
-    } catch (const std::invalid_argument& e) {
-        std::cerr << "invalid number found, skipping.." << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "error parsing tick: " << e.what() << std::endl;
         return Tick{};
     }
 
