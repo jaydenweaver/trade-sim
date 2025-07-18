@@ -3,6 +3,17 @@
 #include <string>
 #include <vector>
 
+enum TickField {
+    DATE,
+    CLOSE,
+    OPEN,
+    HIGH,
+    LOW,
+    VOLUME,
+    CHANGE,
+    FIELD_COUNT
+};
+
 struct Tick {
     std::string date;
     double close;
@@ -15,11 +26,11 @@ struct Tick {
     Tick() = default;
 
     Tick(const std::vector<std::string>& values)
-        : date(values[0]),
-          close(std::stod(values[1])),
-          open(std::stod(values[2])),
-          high(std::stod(values[3])),
-          low(std::stod(values[4])),
-          volume(values[5]),
-          change(std::stod(values[6])) {};
+        : date(values[DATE]),
+          close(std::stod(values[CLOSE])),
+          open(std::stod(values[OPEN])),
+          high(std::stod(values[HIGH])),
+          low(std::stod(values[LOW])),
+          volume(values[VOLUME]),
+          change(std::stod(values[CHANGE])) {};
 };
