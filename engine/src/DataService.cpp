@@ -41,14 +41,12 @@ std::string DataService::read_csv() const {
 }
 
 Tick DataService::process_row(const std::string& line) const {
-    Tick tick;
 
     std::istringstream ss(line);
     std::string value;
     std::vector<std::string> values;
 
     while (std::getline(ss, value, ',')){
-
         // trim quotes if needed
         if (value.size() >= 2 && value.front() == '"' && value.back() == '"')
             value = value.substr(1, value.size() - 2);
@@ -58,23 +56,18 @@ Tick DataService::process_row(const std::string& line) const {
 
     if (values.size() != 7) {
         std::cerr << "skipping malformed line" << std::endl;
-        return tick;
+        return Tick{};
     }
 
     // trim % off change if needed
     if (values[6].back() == '%') values[6] = values[6].substr(0, value.size() - 2);
 
-    tick.date = values[0];
-    tick.volume = values[5];
+    Tick tick;
 
     try {
-        tick.close = std::stod(values[1]);
-        tick.open  = std::stod(values[2]);
-        tick.high  = std::stod(values[3]);
-        tick.low   = std::stod(values[4]);
-        tick.change = std::stod(values[6]);
+        tick = Tick(values);
     } catch (const std::invalid_argument& e) {
-        std::cerr << "Invalid number in line: " << line << std::endl;
+        std::cerr << "invalid number found, skipping.." << std::endl;
         return Tick{};
     }
 
