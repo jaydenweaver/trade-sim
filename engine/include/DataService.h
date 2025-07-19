@@ -10,7 +10,6 @@
 // also note that first line (header) is skipped
 class DataService {
     public:
-
         DataService() = default;
         explicit DataService(const std::string& file_path);
 
@@ -20,7 +19,6 @@ class DataService {
         std::vector<Tick> process_data();
 
     private:
-
         std::string read_csv() const;
         Tick process_row(const std::string& line) const;
         std::string file_path;

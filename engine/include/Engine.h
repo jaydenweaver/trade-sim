@@ -6,7 +6,6 @@
 
 class Engine {
     public:
-
         Engine() = default;
         ~Engine() = default;
 
@@ -16,7 +15,6 @@ class Engine {
         void reset();
 
     private:
-
         std::vector<Tick> data;
         std::vector<std::string> results;
 
