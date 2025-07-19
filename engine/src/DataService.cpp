@@ -65,10 +65,15 @@ Tick DataService::process_row(const std::string& line) const {
     // trim % off change if needed
     if (values[CHANGE].back() == '%') values[CHANGE] = values[CHANGE].substr(0, values[CHANGE].size() - 1);
 
+    // convert date string to chrono format
+    std::chrono::year_month_day date;
+    std::istringstream iss(values[DATE]);
+    iss >> std::chrono::parse("%m/%d/%Y", date);
+
     Tick tick;
 
     try {
-        tick = Tick(values);
+        tick = Tick(date, values);
     } catch (const std::exception& e) {
         std::cerr << "error parsing tick: " << e.what() << std::endl;
         return Tick{};

@@ -6,13 +6,17 @@
 
 class StrategyTakeProfit : public StrategyBase {
     public:
+        explicit StrategyTakeProfit(const double& target_return, const double& sell_portion)
+        : target_return(target_return), sell_portion(sell_portion) {}; 
+
+        void init();
         void on_tick(const Tick& tick) override;
         std::string get_result() const override;
 
     private:
         Test test;
 
-        // TODO: find a more maintainable place to store these values
-        double target_return = 0.1;
-        double sell_portion = 0.91;
+        double target_return;
+        double sell_portion;
+        std::string strategy_name = "Take profit";
 };

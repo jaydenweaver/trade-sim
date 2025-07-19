@@ -3,6 +3,7 @@
 #include "Tick.h"
 #include <vector>
 #include <string>
+#include <chrono>
 
 // DataService processes CSV files into clean data
 // currently only supports CSV files with row format: date, close, open, high, low, volume, change

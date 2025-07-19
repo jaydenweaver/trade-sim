@@ -5,7 +5,6 @@
 
 class Server {
     public:
-
         explicit Server(int port);
         ~Server();
 
@@ -13,7 +12,6 @@ class Server {
         void stop();
 
     private:
-
         void accept_connection();
         void handle_client(int client_socket);
 

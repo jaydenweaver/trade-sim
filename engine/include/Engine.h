@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Tick.h"
+#include "StrategyBase.h"
 #include <vector>
 #include <string>
+#include <memory>
 
 class Engine {
     public:
@@ -10,13 +12,11 @@ class Engine {
         ~Engine() = default;
 
         void load_ticks(const std::vector<Tick>& ticks);
-        void run_test();
+        void set_strategy(std::unique_ptr<StrategyBase> s);
+        void run_strategy();
         std::vector<std::string> get_results() const;
-        void reset();
 
     private:
         std::vector<Tick> data;
-        std::vector<std::string> results;
-
-        void process_tick(const Tick& tick);
+        std::unique_ptr<StrategyBase> strategy;
 };

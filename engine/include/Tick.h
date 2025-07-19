@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <chrono>
 
 enum TickField {
     DATE,
@@ -15,7 +16,7 @@ enum TickField {
 };
 
 struct Tick {
-    std::string date;
+    std::chrono::year_month_day date;
     double close;
     double open;
     double high;
@@ -25,8 +26,8 @@ struct Tick {
 
     Tick() = default;
 
-    Tick(const std::vector<std::string>& values)
-        : date(values[DATE]),
+    Tick(const std::chrono::year_month_day& date, std::vector<std::string>& values)
+        : date(date),
           close(std::stod(values[CLOSE])),
           open(std::stod(values[OPEN])),
           high(std::stod(values[HIGH])),

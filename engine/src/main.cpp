@@ -10,8 +10,7 @@ int main() {
     Engine engine{};
 
     std::vector<Tick> ticks = dataService.process_data();
-    engine.load_ticks(ticks); 
-    engine.run_test();
+    //engine.load_ticks(ticks); 
 
     std::cout << "parsed " << ticks.size() << " ticks:" << std::endl;
 

@@ -23,4 +23,5 @@ struct Test{
     std::vector<Buy> buys;
     std::vector<Sell> sells;
     double average_buy() const;
+    bool finished = false;
 };

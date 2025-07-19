@@ -9,7 +9,7 @@ class StrategyBase {
 
         virtual void init() {}
 
-        virtual void on_tick() = 0;
+        virtual void on_tick(const Tick& tick) = 0;
 
         virtual std::string get_result() const = 0;
 
