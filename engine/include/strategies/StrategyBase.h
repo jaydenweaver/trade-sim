@@ -7,7 +7,7 @@ class StrategyBase {
     public:
         virtual ~StrategyBase() = default;
 
-        virtual void initialize() {}
+        virtual void init() {}
 
         virtual void on_tick() = 0;
 

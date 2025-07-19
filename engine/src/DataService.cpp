@@ -57,13 +57,13 @@ Tick DataService::process_row(const std::string& line) const {
         values.push_back(value);
     }
 
-    if (values.size() != 7) {
+    if (values.size() != FIELD_COUNT) {
         std::cerr << "skipping malformed line" << std::endl;
         return Tick{};
     }
 
     // trim % off change if needed
-    if (values[6].back() == '%') values[6] = values[6].substr(0, values[6].size() - 1);
+    if (values[CHANGE].back() == '%') values[CHANGE] = values[CHANGE].substr(0, values[CHANGE].size() - 1);
 
     Tick tick;
 
