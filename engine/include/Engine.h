@@ -7,8 +7,8 @@
 class Engine {
     public:
 
-        Engine();
-        ~Engine();
+        Engine() = default;
+        ~Engine() = default;
 
         void load_ticks(const std::vector<Tick>& ticks);
         void run_test();

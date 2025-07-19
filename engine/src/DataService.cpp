@@ -24,6 +24,9 @@ std::vector<Tick> DataService::process_data() {
     while (std::getline(stream, line)) 
         ticks.push_back(process_row(line));
 
+    if (ticks.empty()) 
+        std::cerr << "error! no ticks loaded" << std::endl;
+
     return ticks;
 }
 
