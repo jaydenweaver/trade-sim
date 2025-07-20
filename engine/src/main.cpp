@@ -10,7 +10,8 @@ int main() {
     Engine engine{};
 
     std::vector<Tick> ticks = dataService.process_data();
-    //engine.load_ticks(ticks); 
+    engine.load_ticks(ticks); 
+    engine.set_strategy(std::make_unique<StrategyTakeProfit>(0.1, 0.91));
 
     std::cout << "parsed " << ticks.size() << " ticks:" << std::endl;
 

@@ -22,6 +22,7 @@ struct Test{
     std::chrono::year_month_day end_date;
     std::vector<Buy> buys;
     std::vector<Sell> sells;
+    size_t units;
     double average_buy() const;
     bool finished = false;
 };

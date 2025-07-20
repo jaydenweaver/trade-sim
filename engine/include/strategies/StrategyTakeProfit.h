@@ -18,5 +18,10 @@ class StrategyTakeProfit : public StrategyBase {
 
         double target_return;
         double sell_portion;
+        double buy_price;
+        size_t buy_units = 100;
         std::string strategy_name = "Take profit";
+        void buy(const Tick& tick, double& price);
+        void sell(const Tick& tick, double& price);
+        void reset_target(double& price);
 };

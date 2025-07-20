@@ -2,6 +2,7 @@
 
 #include "Tick.h"
 #include "StrategyBase.h"
+#include "StrategyTakeProfit.h"
 #include <vector>
 #include <string>
 #include <memory>
