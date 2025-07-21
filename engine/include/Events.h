@@ -18,11 +18,9 @@ struct Sell {
 
 struct Test{
     std::string strategy_name;
-    std::chrono::year_month_day start_date;
-    std::chrono::year_month_day end_date;
     std::vector<Buy> buys;
     std::vector<Sell> sells;
-    size_t units;
+    size_t units = 0;
     double average_buy() const;
     bool finished = false;
 };

@@ -14,12 +14,13 @@ void Engine::run_strategy() {
         return;
     }
 
-    //strategy -> reset();
+    strategy -> init();
     for (const Tick& tick : data) {
         strategy -> on_tick(tick);
     }
+
+    std::cout << "finished strategy with " << strategy->get_test().buys.size() << " buys and " << strategy->get_test().sells.size() << " sells." << std::endl;
 }
 
-std::vector<std::string> Engine::get_results() const {
-
-}
+//std::vector<std::string> Engine::get_results() const {
+//}

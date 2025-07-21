@@ -15,7 +15,7 @@ class Engine {
         void load_ticks(const std::vector<Tick>& ticks);
         void set_strategy(std::unique_ptr<StrategyBase> s);
         void run_strategy();
-        std::vector<std::string> get_results() const;
+        //std::vector<std::string> get_results() const;
 
     private:
         std::vector<Tick> data;
