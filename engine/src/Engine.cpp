@@ -19,7 +19,11 @@ void Engine::run_strategy() {
         strategy -> on_tick(tick);
     }
 
-    std::cout << "finished strategy with " << strategy->get_test().buys.size() << " buys and " << strategy->get_test().sells.size() << " sells." << std::endl;
+    Test test = strategy->get_test();
+    double profit = 0;
+    for (const Buy& buy : test.buys) profit -= (buy.price * buy.units);
+    for (const Sell& sell : test.sells) profit += (sell.price * sell.units);
+    std::cout << "finished strategy with " << strategy->get_test().buys.size() << " buys and " << strategy->get_test().sells.size() << " sells for a profit of: $" << profit << std::endl;
 }
 
 //std::vector<std::string> Engine::get_results() const {

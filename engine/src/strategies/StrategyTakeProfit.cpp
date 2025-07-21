@@ -3,7 +3,6 @@
 
 void StrategyTakeProfit::init() {
     test.strategy_name = strategy_name;
-    std::cout << "units: " << test.units << std::endl;
 }
 
 void StrategyTakeProfit::on_tick(const Tick& tick) {
@@ -21,7 +20,6 @@ void StrategyTakeProfit::buy(const Tick& tick, double& price) {
     });
     buy_price = price;
     test.units += buy_units;
-    std::cout << "buying... test units: " << test.units << std::endl;
 }
 
 void StrategyTakeProfit::sell(const Tick& tick, double& price) {
@@ -32,5 +30,4 @@ void StrategyTakeProfit::sell(const Tick& tick, double& price) {
         .units = sell_units
     });
     test.units -= sell_units;
-    std::cout << "selling... test units: " << test.units << std::endl;
 }
