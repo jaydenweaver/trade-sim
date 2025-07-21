@@ -24,8 +24,13 @@ std::vector<Tick> DataService::process_data() {
     while (std::getline(stream, line)) 
         ticks.push_back(process_row(line));
 
-    if (ticks.empty()) 
+    if (ticks.empty()) {
         std::cerr << "error! no ticks loaded" << std::endl;
+        return ticks;
+    }
+
+    // reverse vector if csv stores earlier dates towards the top
+    if (!is_earlier(ticks.front().date, ticks.back().date)) std::reverse(ticks.begin(), ticks.end());
 
     return ticks;
 }
@@ -82,3 +87,6 @@ Tick DataService::process_row(const std::string& line) const {
     return tick;
 }
 
+bool DataService::is_earlier(const std::chrono::year_month_day& value, const std::chrono::year_month_day& compare) const {
+    return std::chrono::sys_days(value) < std::chrono::sys_days(compare);
+}

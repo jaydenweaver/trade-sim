@@ -14,7 +14,7 @@ void Engine::run_strategy() {
         return;
     }
 
-    strategy -> reset();
+    //strategy -> reset();
     for (const Tick& tick : data) {
         strategy -> on_tick(tick);
     }

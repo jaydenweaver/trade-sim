@@ -23,4 +23,5 @@ class DataService {
         std::string read_csv() const;
         Tick process_row(const std::string& line) const;
         std::string file_path;
+        bool is_earlier(const std::chrono::year_month_day& value, const std::chrono::year_month_day& compare) const;
 };
