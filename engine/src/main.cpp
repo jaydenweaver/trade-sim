@@ -6,11 +6,11 @@
 int main() {
     std::string csv_path = "../data/tqqq.csv";
 
-    DataService dataService(csv_path);
+    DataService data_service(csv_path);
     Engine engine{};
 
     auto start = std::chrono::high_resolution_clock::now();
-    std::vector<Tick> ticks = dataService.process_data();
+    std::vector<Tick> ticks = data_service.process_data();
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::micro> duration = end - start;
 
