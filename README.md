@@ -1,1 +1,1 @@
-data pulled from coinbase developer API
+will load csv data to run backtests on.
