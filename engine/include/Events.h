@@ -4,6 +4,11 @@
 #include <vector>
 #include <chrono>
 
+/*
+
+add in a Trade struct that will be placed inbetween Test and Buy/Sell
+
+*/
 struct Buy {
     std::chrono::year_month_day date;
     double price;
